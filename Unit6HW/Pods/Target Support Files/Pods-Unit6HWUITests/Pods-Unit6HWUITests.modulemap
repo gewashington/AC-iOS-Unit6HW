@@ -1,0 +1,6 @@
+framework module Pods_Unit6HWUITests {
+  umbrella header "Pods-Unit6HWUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
