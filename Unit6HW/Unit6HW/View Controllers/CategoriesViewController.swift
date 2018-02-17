@@ -89,7 +89,7 @@ class CategoriesViewController: UIViewController {
     }
     
     @objc private func createDeck() {
-        let createDeckAC = UIAlertController(title: "Create A New Deck", message: "Enter the name of your new deck here:", preferredStyle: .alert)
+        let createDeckAC = UIAlertController(title: "Create A New Deck", message: "Enter the name of your new deck.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             let textField = createDeckAC.textFields![0] as UITextField
             guard let deckName = textField.text, !deckName.isEmpty else { print("No deckname entered"); return }
@@ -147,10 +147,10 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCell", for: indexPath) as! CategoryCollectionViewCell
         let deck = decks[indexPath.row]
         cell.categoryNameLabel.text = deck.name
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 0.5
+        cell.layer.borderColor = UIColor.gray.cgColor
         return cell
     }
     

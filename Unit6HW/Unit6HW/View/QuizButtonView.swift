@@ -11,13 +11,18 @@ import UIKit
 class QuizButtonView: UIView {
     lazy var rightButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "rightCheck"), for: .normal)
+        let image = UIImage(named: "rightCheck")?.withRenderingMode(.alwaysTemplate)
+        butt.setImage(image, for: .normal)
+        butt.tintColor = .white
+
         return butt
     }()
     
     lazy var wrongButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "wrongX"), for: .normal)
+        let image = UIImage(named: "wrongX")?.withRenderingMode(.alwaysTemplate)
+        butt.setImage(image, for: .normal)
+        butt.tintColor = .white
         return butt
     }()
     

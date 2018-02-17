@@ -25,7 +25,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     lazy var categoryNameLabel: UILabel = {
         let lab = UILabel()
         lab.text = "Category"
-        lab.textColor = .black
+        lab.textColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
         return lab
     }()
     

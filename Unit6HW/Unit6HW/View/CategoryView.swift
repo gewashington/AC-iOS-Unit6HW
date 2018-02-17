@@ -18,10 +18,12 @@ class CategoryView: UIView {
         let lab = UILabel()
         lab.text = "Hi Glo! Here are your cards!"
         lab.adjustsFontSizeToFitWidth = true
+        lab.numberOfLines = 0
         lab.textColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+//        lab.textColor = .black
         //        lab.backgroundColor = .black
         lab.textAlignment = .center
-        lab.font = UIFont(name: "Gill Sans", size: 25)
+        lab.font = UIFont(name: "GillSans-Light", size: 30)
         return lab
     }()
     
@@ -32,8 +34,11 @@ class CategoryView: UIView {
         You guessed 50% of your decks correctly!
         """
         txt.textColor = .black
-        txt.font = UIFont(name: "Gill Sans", size: 12)
+        txt.font = UIFont(name: "Gill Sans", size: 13)
         txt.textAlignment = .center
+        txt.isSelectable = false
+        txt.isEditable = false
+        txt.adjustsFontForContentSizeCategory = true
         return txt
     }()
     
@@ -57,19 +62,32 @@ class CategoryView: UIView {
     
     lazy var addCardButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "makeNewCard"), for: .normal)
+        let image = UIImage(named: "makeNewCard")?.withRenderingMode(.alwaysTemplate)
+        butt.setImage(image, for: .normal)
+        butt.tintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+        butt.layer.borderColor = UIColor.lightGray.cgColor
+        butt.layer.borderWidth = 0.3
         return butt
     }()
     
     lazy var createDeckButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "createNewDeck"), for: .normal)
+        let image = UIImage(named: "createNewDeck")?.withRenderingMode(.alwaysTemplate)
+        butt.setImage(image, for: .normal)
+        butt.tintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+        butt.layer.borderColor = UIColor.lightGray.cgColor
+        butt.layer.borderWidth = 0.3
+
         return butt
     }()
     
     lazy var logoutButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "logOutArrow"), for: .normal)
+        let image = UIImage(named: "logOutArrow")?.withRenderingMode(.alwaysTemplate)
+        butt.setImage(image, for: .normal)
+        butt.tintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+        butt.layer.borderColor = UIColor.lightGray.cgColor
+        butt.layer.borderWidth = 0.3
         return butt
     }()
     
@@ -141,18 +159,20 @@ class CategoryView: UIView {
     private func setUpCreateButton() {
         createDeckButton.snp.makeConstraints { (butt) in
             butt.bottom.equalTo(self.snp.bottom)
-            butt.width.equalTo(self.snp.width).multipliedBy(0.33)
+//            butt.width.equalTo(self.snp.width).multipliedBy(0.33)
             butt.height.equalTo(self.snp.height).multipliedBy(0.1)
             butt.right.equalTo(addCardButton.snp.left)
+            butt.left.equalTo(self.snp.left)
         }
     }
     
     private func setUpLogoutButton() {
         logoutButton.snp.makeConstraints { (butt) in
             butt.bottom.equalTo(self.snp.bottom)
-            butt.width.equalTo(self.snp.width).multipliedBy(0.33)
+//            butt.width.equalTo(self.snp.width).multipliedBy(0.33)
             butt.height.equalTo(self.snp.height).multipliedBy(0.1)
             butt.left.equalTo(addCardButton.snp.right)
+            butt.right.equalTo(self.snp.right)
         }
     }
     
