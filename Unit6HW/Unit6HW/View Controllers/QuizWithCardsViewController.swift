@@ -22,6 +22,7 @@ class QuizWithCardsViewController: UIViewController {
     
     var currentUser: User!
     var currentDeckTitle: String!
+    var currentCard: Int!
     
     let quizView = QuizWithCardsView()
     let quizButtons = QuizButtonView()
@@ -85,6 +86,7 @@ class QuizWithCardsViewController: UIViewController {
         quizButtons.rightButton.isHidden = true
         quizButtons.wrongButton.isHidden = true
         quizButtons.showAnswerButton.isHidden = false
+        nextQuestion()
         //Add code to add correct answer points
         //Add code to move to next question
     }
@@ -94,9 +96,22 @@ class QuizWithCardsViewController: UIViewController {
         quizButtons.rightButton.isHidden = true
         quizButtons.wrongButton.isHidden = true
         quizButtons.showAnswerButton.isHidden = false
+        nextQuestion()
         //Add code to move to next question
     }
     
+    private func nextQuestion() {
+        var cardIterator = cards.makeIterator()
+        while let card = cardIterator.next() {
+            quizView.questionTextView.text = card.question
+            quizView.answerTextView.text = card.answer
+
+        }
+
+    
+        
+        
+    }
     /*
      // MARK: - Navigation
      
