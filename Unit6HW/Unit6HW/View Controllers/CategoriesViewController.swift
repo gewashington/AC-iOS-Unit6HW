@@ -76,8 +76,16 @@ class CategoriesViewController: UIViewController {
         
         view.addSubview(categoryView)
         setUpCatView()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+//        self.navigationController?.navigationBar.isTranslucent = true
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+        let navBar = self.navigationController?.navigationBar
+        navBar?.barTintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+        navBar?.tintColor = .white
+        navBar?.isTranslucent = false
+        navBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navBar?.shadowImage = UIImage()
+     
+
 //        categoryView.welcomeLabel.text = "Hi, \(String(describing: Auth.auth().currentUser!.displayName!))! Here are your decks!"
 //        categoryView.statisticTextView.text = """
 //        You have \(decks.count.description) decks.
@@ -88,6 +96,7 @@ class CategoriesViewController: UIViewController {
         categoryView.addCardButton.addTarget(self, action: #selector(addCard), for: .touchUpInside)
         //        categoryView.categoryCollectionView.delegate = self
         categoryView.categoryCollectionView.dataSource = self
+        categoryView.categoryCollectionView.delegate = self
     
         
     }
@@ -162,7 +171,7 @@ extension CategoriesViewController: FirebaseAPIDelegate {
     }
 }
 
-extension CategoriesViewController: UICollectionViewDataSource {
+extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return decks.count
     }
@@ -178,6 +187,13 @@ extension CategoriesViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let quizVC = QuizWithCardsViewController()
+        self.navigationController?.pushViewController(quizVC, animated: true)
+    }
+    
+    
+
     
 }
 

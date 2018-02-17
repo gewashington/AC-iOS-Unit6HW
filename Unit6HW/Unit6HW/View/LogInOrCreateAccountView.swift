@@ -30,7 +30,7 @@ class LogInOrCreateAccountView: UIView {
     lazy var createAccountButton: UIButton = {
         let butt = UIButton()
         butt.setTitle("Create Account", for: .normal)
-        butt.setTitleColor(.black, for: .normal)
+//        butt.setTitleColor(.black, for: .normal)
         butt.layer.borderColor = UIColor.white.cgColor
         butt.layer.borderWidth = 1.0
         butt.layer.cornerRadius = 2.0

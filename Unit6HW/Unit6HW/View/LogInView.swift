@@ -23,7 +23,7 @@ class LogInView: UIView {
     
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
-        tf.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         tf.textColor = .white
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
