@@ -137,7 +137,7 @@ class LogInView: UIView {
         }
     }
     
-    func underLine(from txt: UITextField) {
+    public func underLine(from txt: UITextField) {
         let border = UIView()
         border.backgroundColor = .white
         border.translatesAutoresizingMaskIntoConstraints = false

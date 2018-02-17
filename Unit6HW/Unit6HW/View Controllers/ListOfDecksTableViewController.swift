@@ -8,12 +8,11 @@
 
 import UIKit
 
-@objc protocol ShareDecks: class {
-    @objc optional func didGetDecks(_ viewController: ListOfDecksTableViewController)
-}
 
 class ListOfDecksTableViewController: UITableViewController {
     
+    var delegate: ChosenDeck?
+    var currentDeckName: String?
     
     var decks = [Decks]() {
         didSet{
@@ -42,6 +41,13 @@ class ListOfDecksTableViewController: UITableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if let delegate = self.delegate {
+            delegate.didChooseDeck(deck: currentDeckName ?? "Choose A Deck")
+        }
+    }
+    
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,9 +69,11 @@ class ListOfDecksTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let deck = decks[indexPath.row]
-        //        let deck = decks[indexPath.row]
-        //        addCardVC.addCardView.menuButton.setTitle(deck.name, for: .normal)
-        //        addCardVC.chosenDeck = deck.name
+    
+        currentDeckName = deck.name
+        self.navigationController?.popViewController(animated: true)
+       
+   
     }
     
     

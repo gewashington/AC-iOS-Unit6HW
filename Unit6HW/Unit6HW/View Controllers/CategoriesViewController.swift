@@ -35,7 +35,6 @@ class CategoriesViewController: UIViewController {
         }
     }
     
-//    let menuVC = ListOfDecksTableViewController()
     
     
     var currentUser: User!
@@ -124,6 +123,7 @@ class CategoriesViewController: UIViewController {
             if let currentUser = Auth.auth().currentUser {
                 let newCat = self.ref.child("users/\(String(describing: currentUser.uid))/categories").childByAutoId()
                 newCat.setValue(newDeck.toAnyObject())
+            
                 
             }
         }

@@ -10,10 +10,16 @@ import UIKit
 import SnapKit
 import Firebase
 
+protocol ChosenDeck  {
+    func didChooseDeck(deck: String)
+}
 
-class AddCardViewController: UIViewController {
+class AddCardViewController: UIViewController, ChosenDeck {
+   
+    
 
     var ref: DatabaseReference!
+    var currentDeckToModify: String!
 //    var chosenDeck: String!
     let addCardView = AddCardView()
     let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCardToDeck))
@@ -29,13 +35,35 @@ class AddCardViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    func didChooseDeck(deck: String) {
+        currentDeckToModify = deck
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpAddCardView()
         self.navigationItem.rightBarButtonItem = addButton
-        addCardView.menuButton.addTarget(self, action: #selector(viewDeckTitles), for: .touchUpInside)
+        addCardView.selectDeckButton.addTarget(self, action: #selector(viewDeckTitles), for: .touchUpInside)
+        self.navigationItem.title = "Add Card"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUpButtonTitle()
     }
 
+    private func setUpButtonTitle() {
+        let listOfDecksButton = addCardView.selectDeckButton
+        if currentDeckToModify == nil {
+            listOfDecksButton.setTitle("Choose A Deck", for: .normal)
+        }
+        else {
+            listOfDecksButton.setTitle(currentDeckToModify, for: .normal)
+        }
+    }
+ 
     private func setUpAddCardView() {
         self.view.addSubview(addCardView)
         addCardView.snp.makeConstraints { (acView) in
@@ -47,11 +75,20 @@ class AddCardViewController: UIViewController {
         guard let question = addCardView.questionTextField.text, !question.isEmpty else { print("Blank question field"); return }
         guard let answer = addCardView.answerTextField.text, !answer.isEmpty else { print("Answer field is blank"); return }
         self.ref = Database.database().reference()
+        let newFlashCard = Cards(ref: ref, question: question, answer: answer)
+        if let currentUser = Auth.auth().currentUser, currentDeckToModify != nil {
+            let newCard = self.ref.child("users/\(currentUser.uid)/cards").child(currentDeckToModify).childByAutoId()
+            newCard.setValue(newFlashCard.toAnyObject())
+            print(newCard)
+        }
+        addCardView.questionTextField.text = ""
+        addCardView.answerTextField.text = ""
     
     }
     
     @objc private func viewDeckTitles() {
        let listVC = ListOfDecksTableViewController(decks: deckHolder)
+        listVC.delegate = self
         self.navigationController?.pushViewController(listVC, animated: true)
     }
     /*
