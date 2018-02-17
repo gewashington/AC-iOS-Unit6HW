@@ -12,6 +12,8 @@ import Firebase
 
 class QuizWithCardsViewController: UIViewController {
     
+    var ref: DatabaseReference!
+    
     var cards = [Cards]() {
         didSet{
             print("It set!")
@@ -22,7 +24,9 @@ class QuizWithCardsViewController: UIViewController {
     
     var currentUser: User!
     var currentDeckTitle: String!
-    var currentCard: Int!
+    var currentCard = 0
+    var correctAnswers = 0
+    
     
     let quizView = QuizWithCardsView()
     let quizButtons = QuizButtonView()
@@ -82,13 +86,16 @@ class QuizWithCardsViewController: UIViewController {
     }
     
     @objc private func correctAnswer() {
+        correctAnswers += 1
         quizView.answerTextView.isHidden = true
         quizButtons.rightButton.isHidden = true
         quizButtons.wrongButton.isHidden = true
         quizButtons.showAnswerButton.isHidden = false
+        self.ref = Database.database().reference()
+        let newCorrectGuesses = CorrectGuess(ref: ref, correctGuesses: correctAnswers)
+        let newGuessAmount = self.ref.child("users/\(currentUser.uid)/timesCorrect").child(currentDeckTitle).child(cards[currentCard].question)
+        newGuessAmount.setValue(newCorrectGuesses.toAnyObject())
         nextQuestion()
-        //Add code to add correct answer points
-        //Add code to move to next question
     }
     
     @objc private func wrongAnswer() {
@@ -97,19 +104,18 @@ class QuizWithCardsViewController: UIViewController {
         quizButtons.wrongButton.isHidden = true
         quizButtons.showAnswerButton.isHidden = false
         nextQuestion()
-        //Add code to move to next question
+        
     }
     
-    private func nextQuestion() {
-        var cardIterator = cards.makeIterator()
-        while let card = cardIterator.next() {
-            quizView.questionTextView.text = card.question
-            quizView.answerTextView.text = card.answer
-
+    @objc private func nextQuestion() {
+        if currentCard == cards.count - 1 {
+            currentCard = 0
         }
-
-    
-        
+        else {
+            currentCard += 1
+        }
+        quizView.questionTextView.text = cards[currentCard].question
+        quizView.answerTextView.text = cards[currentCard].answer
         
     }
     /*

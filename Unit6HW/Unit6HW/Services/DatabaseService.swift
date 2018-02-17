@@ -46,6 +46,9 @@ class DatabaseService {
             completion(cards)
         }
     }
+    
+
+    
 
 //    guard; let user = Auth.auth().currentUser else { print("Error: No user"); return
 //

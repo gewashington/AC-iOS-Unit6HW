@@ -15,6 +15,7 @@
 		811D1A90203499CA004C61DB /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D1A8F203499CA004C61DB /* DatabaseService.swift */; };
 		811D1A93203768E9004C61DB /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D1A92203768E9004C61DB /* AddCardViewController.swift */; };
 		811D1A95203768FB004C61DB /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D1A94203768FB004C61DB /* AddCardView.swift */; };
+		81295A5C2038829B00059133 /* CorrectGuessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81295A5B2038829B00059133 /* CorrectGuessModel.swift */; };
 		8155F75F20378820000910F1 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155F75E20378820000910F1 /* CardModel.swift */; };
 		8155F76520378D85000910F1 /* ListOfDecksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155F76420378D85000910F1 /* ListOfDecksTableViewController.swift */; };
 		817EBDC52032360000474C38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817EBDC42032360000474C38 /* AppDelegate.swift */; };
@@ -68,6 +69,7 @@
 		811D1A8F203499CA004C61DB /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		811D1A92203768E9004C61DB /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		811D1A94203768FB004C61DB /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
+		81295A5B2038829B00059133 /* CorrectGuessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectGuessModel.swift; sourceTree = "<group>"; };
 		8155F75E20378820000910F1 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		8155F76420378D85000910F1 /* ListOfDecksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfDecksTableViewController.swift; sourceTree = "<group>"; };
 		817EBDC12032360000474C38 /* Unit6HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit6HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +165,7 @@
 			children = (
 				811D1A8C20349539004C61DB /* CategoriesModel.swift */,
 				8155F75E20378820000910F1 /* CardModel.swift */,
+				81295A5B2038829B00059133 /* CorrectGuessModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				811D1A93203768E9004C61DB /* AddCardViewController.swift in Sources */,
 				817EBE0220323DD800474C38 /* FirebaseAuthHelper.swift in Sources */,
 				8155F76520378D85000910F1 /* ListOfDecksTableViewController.swift in Sources */,
+				81295A5C2038829B00059133 /* CorrectGuessModel.swift in Sources */,
 				811D1A4320334B52004C61DB /* CategoriesViewController.swift in Sources */,
 				817EBE0020323DC300474C38 /* CreateAccountViewController.swift in Sources */,
 				81864CDB2037D1DD00F8CA33 /* QuizWithCardsView.swift in Sources */,
