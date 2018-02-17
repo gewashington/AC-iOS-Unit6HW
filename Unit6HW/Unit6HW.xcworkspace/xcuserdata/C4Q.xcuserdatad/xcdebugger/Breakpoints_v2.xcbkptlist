@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unit6HW/Helpers/FirebaseAuthHelper.swift"
-            timestampString = "540502116.427961"
+            filePath = "Unit6HW/View Controllers/LogInOrCreateAccountViewController.swift"
+            timestampString = "540515755.268366"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "login(email:password:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "switchToLoginVC()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unit6HW/View Controllers/CategoriesViewController.swift"
-            timestampString = "540502116.428017"
+            filePath = "Unit6HW/View Controllers/LogInOrCreateAccountViewController.swift"
+            timestampString = "540515755.268512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "loadCategories()"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "switchToCreateVC()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,61 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Unit6HW/Services/DatabaseService.swift"
-            timestampString = "540502116.428411"
+            filePath = "Unit6HW/View Controllers/LogInOrCreateAccountViewController.swift"
+            timestampString = "540515755.2686321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "getDecks(from:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unit6HW/Services/DatabaseService.swift"
-            timestampString = "540502116.4284689"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "getDecks(from:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unit6HW/Services/DatabaseService.swift"
-            timestampString = "540502116.428519"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "getDecks(from:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Unit6HW/View Controllers/CategoriesViewController.swift"
-            timestampString = "540502116.428568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "loadCategories()"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "switchToLoginVC()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

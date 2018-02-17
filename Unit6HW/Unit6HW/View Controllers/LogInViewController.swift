@@ -68,7 +68,7 @@ class LogInViewController: UIViewController {
 
 extension LogInViewController: FirebaseAPIDelegate {
     func didSignIn(_ userService: FirebaseAuthorization, user: User) {
-        let categoryVC = CategoriesViewController()
+        let categoryVC = UINavigationController(rootViewController: CategoriesViewController())
         print("Logged in ")
         present(categoryVC, animated: true, completion: nil)
     }

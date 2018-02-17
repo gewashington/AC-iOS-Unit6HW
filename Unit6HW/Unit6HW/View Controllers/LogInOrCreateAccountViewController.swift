@@ -35,20 +35,7 @@ class LogInOrCreateAccountViewController: UIViewController {
         vcvView.createAccountButton.addTarget(self, action: #selector(switchToCreateVC), for: .touchUpInside)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if let user = user {
-//                print("User signed in")
-//            }
-//            else  {
-//                print("User signed out")
-//            }
-//        }
-//        if let cUser = Auth.auth().currentUser {
-//          
-//        }
-    }
-    
+
     func setUpViewConstraints() {
         vcvView.snp.makeConstraints { (make) in
             make.size.equalTo(self.view.snp.size)
@@ -57,6 +44,7 @@ class LogInOrCreateAccountViewController: UIViewController {
     
     @objc private func switchToLoginVC() {
         let loginVC = LogInViewController()
+        
 //        let navLoginVC = UINavigationController(rootViewController: loginVC)
 //        present(loginVC, animated: true, completion: nil)
         self.navigationController?.pushViewController(loginVC, animated: true)

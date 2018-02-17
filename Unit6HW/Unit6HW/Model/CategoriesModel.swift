@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-struct Decks {
+class Decks: NSObject {
     let ref: DatabaseReference
 //    let categories: [String : String ]
     let name: String

@@ -10,14 +10,30 @@ import UIKit
 import SnapKit
 import Firebase
 
+
 class AddCardViewController: UIViewController {
 
+    var ref: DatabaseReference!
+//    var chosenDeck: String!
     let addCardView = AddCardView()
+    let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCardToDeck))
+    
+    var deckHolder = [Decks]()
+    
+    init(decks: [Decks]) {
+        super.init(nibName: nil, bundle: nil)
+        self.deckHolder = decks
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpAddCardView()
-
+        self.navigationItem.rightBarButtonItem = addButton
+        addCardView.menuButton.addTarget(self, action: #selector(viewDeckTitles), for: .touchUpInside)
     }
 
     private func setUpAddCardView() {
@@ -27,6 +43,17 @@ class AddCardViewController: UIViewController {
         }
     }
 
+    @objc private func addCardToDeck() {
+        guard let question = addCardView.questionTextField.text, !question.isEmpty else { print("Blank question field"); return }
+        guard let answer = addCardView.answerTextField.text, !answer.isEmpty else { print("Answer field is blank"); return }
+        self.ref = Database.database().reference()
+    
+    }
+    
+    @objc private func viewDeckTitles() {
+       let listVC = ListOfDecksTableViewController(decks: deckHolder)
+        self.navigationController?.pushViewController(listVC, animated: true)
+    }
     /*
     // MARK: - Navigation
 

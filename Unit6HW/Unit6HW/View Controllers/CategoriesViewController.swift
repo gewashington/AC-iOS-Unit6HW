@@ -11,7 +11,11 @@ import UIKit
 import SnapKit
 import Firebase
 
+
+
 class CategoriesViewController: UIViewController {
+    
+
     
     let categoryView = CategoryView()
     
@@ -27,8 +31,12 @@ class CategoriesViewController: UIViewController {
             You have \(decks.count.description) decks.
             You have guessed 50% of your cards correctly.
             """
+            
         }
     }
+    
+//    let menuVC = ListOfDecksTableViewController()
+    
     
     var currentUser: User!
     
@@ -78,9 +86,10 @@ class CategoriesViewController: UIViewController {
 //        """
         categoryView.logoutButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         categoryView.createDeckButton.addTarget(self, action: #selector(createDeck), for: .touchUpInside)
+        categoryView.addCardButton.addTarget(self, action: #selector(addCard), for: .touchUpInside)
         //        categoryView.categoryCollectionView.delegate = self
         categoryView.categoryCollectionView.dataSource = self
-        
+    
         
     }
     
@@ -91,12 +100,7 @@ class CategoriesViewController: UIViewController {
     }
     
     private func loadCategories() {
-        //        DatabaseService.shared.getDecks { (onlineCategories) in
-        //            let safeCategories = onlineCategories
-        //            self.decks = safeCategories
-        //        }
         DatabaseService.shared.getDecks(from: currentUser) { (onlineCategories) in
-            //            print(onlineCategories)
             let safeCategories = onlineCategories
             self.decks = safeCategories
             print(self.decks)
@@ -133,21 +137,16 @@ class CategoriesViewController: UIViewController {
         self.present(createDeckAC, animated: true, completion: nil)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    @objc private func addCard() {
+        let addCardVC = AddCardViewController(decks: decks)
+        self.navigationController?.pushViewController(addCardVC, animated: true)
+   }
     
 }
 
 extension CategoriesViewController: FirebaseAPIDelegate {
     func didSignout(_ userService: FirebaseAuthorization) {
-        let signInVC = LogInOrCreateAccountViewController()
+        let signInVC = UINavigationController(rootViewController: LogInOrCreateAccountViewController())
         present(signInVC, animated: true, completion: nil)
     }
     
@@ -181,3 +180,4 @@ extension CategoriesViewController: UICollectionViewDataSource {
     
     
 }
+
