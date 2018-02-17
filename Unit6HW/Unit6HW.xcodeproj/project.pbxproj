@@ -33,6 +33,7 @@
 		817EBE05203244CE00474C38 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 817EBE04203244CE00474C38 /* GoogleService-Info.plist */; };
 		81864CD92037D16400F8CA33 /* QuizWithCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81864CD82037D16400F8CA33 /* QuizWithCardsViewController.swift */; };
 		81864CDB2037D1DD00F8CA33 /* QuizWithCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81864CDA2037D1DD00F8CA33 /* QuizWithCardsView.swift */; };
+		81BF4F872037EB8700592172 /* QuizButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BF4F862037EB8700592172 /* QuizButtonView.swift */; };
 		84ECB5338D2A43B04491DF00 /* Pods_Unit6HWTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240C7596E019463A4980F066 /* Pods_Unit6HWTests.framework */; };
 		DA16CF34DCF72E9AFCD4259B /* Pods_Unit6HW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96793BD8DC8B51E1D98896C2 /* Pods_Unit6HW.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		817EBE04203244CE00474C38 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81864CD82037D16400F8CA33 /* QuizWithCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWithCardsViewController.swift; sourceTree = "<group>"; };
 		81864CDA2037D1DD00F8CA33 /* QuizWithCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWithCardsView.swift; sourceTree = "<group>"; };
+		81BF4F862037EB8700592172 /* QuizButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButtonView.swift; sourceTree = "<group>"; };
 		96793BD8DC8B51E1D98896C2 /* Pods_Unit6HW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unit6HW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97623A51AB009FB0470BA377 /* Pods-Unit6HW.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit6HW.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unit6HW/Pods-Unit6HW.debug.xcconfig"; sourceTree = "<group>"; };
 		B334AE44E6EC77472F702EF1 /* Pods-Unit6HWTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit6HWTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unit6HWTests/Pods-Unit6HWTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				811D1A3D20333DD1004C61DB /* CategoryView.swift */,
 				811D1A94203768FB004C61DB /* AddCardView.swift */,
 				81864CDA2037D1DD00F8CA33 /* QuizWithCardsView.swift */,
+				81BF4F862037EB8700592172 /* QuizButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				811D1A8D20349539004C61DB /* CategoriesModel.swift in Sources */,
 				811D1A3E20333DD1004C61DB /* CategoryView.swift in Sources */,
 				817EBDF7203238CD00474C38 /* LogInView.swift in Sources */,
+				81BF4F872037EB8700592172 /* QuizButtonView.swift in Sources */,
 				817EBDFA20323D4200474C38 /* LogInOrCreateAccountViewController.swift in Sources */,
 				81864CD92037D16400F8CA33 /* QuizWithCardsViewController.swift in Sources */,
 				817EBDFC20323DA700474C38 /* LogInOrCreateAccountView.swift in Sources */,

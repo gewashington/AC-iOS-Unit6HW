@@ -28,6 +28,7 @@ class QuizWithCardsView: UIView {
         tv.textColor = .white
         tv.backgroundColor = .clear
         tv.font = UIFont(name: "Gill Sans", size: 20)
+        tv.textAlignment = .center
         return tv
     }()
     

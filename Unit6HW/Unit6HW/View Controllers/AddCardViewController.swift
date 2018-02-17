@@ -22,7 +22,8 @@ class AddCardViewController: UIViewController, ChosenDeck {
     var currentDeckToModify: String!
 //    var chosenDeck: String!
     let addCardView = AddCardView()
-    let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCardToDeck))
+//    let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCardToDeck))
+    let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "savedCardPlus"), style: .plain, target: self, action: #selector(addCardToDeck))
     
     var deckHolder = [Decks]()
     

@@ -57,19 +57,19 @@ class CategoryView: UIView {
     
     lazy var addCardButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "addCard"), for: .normal)
+        butt.setImage(#imageLiteral(resourceName: "makeNewCard"), for: .normal)
         return butt
     }()
     
     lazy var createDeckButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "createDeck"), for: .normal)
+        butt.setImage(#imageLiteral(resourceName: "createNewDeck"), for: .normal)
         return butt
     }()
     
     lazy var logoutButton: UIButton = {
         let butt = UIButton()
-        butt.setImage(#imageLiteral(resourceName: "logOut"), for: .normal)
+        butt.setImage(#imageLiteral(resourceName: "logOutArrow"), for: .normal)
         return butt
     }()
     

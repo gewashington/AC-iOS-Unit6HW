@@ -18,11 +18,10 @@ class CategoriesViewController: UIViewController {
 
     
     let categoryView = CategoryView()
-    
     private var firebaseAuth = FirebaseAuthorization()
     
+    var currentUser: User!
     var ref: DatabaseReference!
-    
     var decks = [Decks]() {
         didSet{
             categoryView.categoryCollectionView.reloadData()
@@ -36,10 +35,6 @@ class CategoriesViewController: UIViewController {
     }
     
     
-    
-    var currentUser: User!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -49,43 +44,15 @@ class CategoriesViewController: UIViewController {
         //        DatabaseService.shared.deckRef.observe(.value) { (snapshot) in
         //            print(snapshot)
         //        }
-        //        DatabaseService.shared.deckRef.observe(.value) { (snapshot) in
-        //            print(snapshot)
-        //        }
-        //        cat2.observe(FIRDataEventType.value, with:
-        //            { (snapshot) in
-        //                let eventDataloc = snapshot.value as? [String: AnyObject] ?? [:]
-        //
-        //
-        //
-        //                for (_, value) in eventDataloc
-        //                {
-        //                    let studsmodel = FirebaseStructureCustVM.updateQuestionData(Questiondata: value as![String:Any])
-        //
-        //                }
-        //
-        //                print((snapshot))
-        //        })
-        //        DatabaseService.shared.categoryRef.observe(.value) { (snapshot) in
-        //            let eventData = snapshot.value as? [String: AnyObject] ?? [:]
-        //            for (_, value) in eventData {
-        //                print(value)
-        //            }
-        //        }
-        
-        
+
         view.addSubview(categoryView)
         setUpCatView()
-//        self.navigationController?.navigationBar.isTranslucent = true
-//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
         let navBar = self.navigationController?.navigationBar
         navBar?.barTintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
         navBar?.tintColor = .white
         navBar?.isTranslucent = false
         navBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navBar?.shadowImage = UIImage()
-     
-
 //        categoryView.welcomeLabel.text = "Hi, \(String(describing: Auth.auth().currentUser!.displayName!))! Here are your decks!"
 //        categoryView.statisticTextView.text = """
 //        You have \(decks.count.description) decks.
@@ -188,7 +155,8 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let quizVC = QuizWithCardsViewController()
+        let deck = decks[indexPath.row]
+        let quizVC = QuizWithCardsViewController(deckTitle: deck.name)
         self.navigationController?.pushViewController(quizVC, animated: true)
     }
     
