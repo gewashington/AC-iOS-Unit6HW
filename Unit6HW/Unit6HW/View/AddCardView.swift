@@ -25,7 +25,7 @@ class AddCardView: UIView {
         let lab = UILabel()
         lab.text = "Front"
         lab.textColor = .black
-
+        lab.font = UIFont(name: "Gill Sans", size: 20)
         
         return lab
     }()
@@ -41,7 +41,8 @@ class AddCardView: UIView {
         let lab = UILabel()
         lab.text = "Back"
         lab.textColor = .black
- 
+        lab.font = UIFont(name: "Gill Sans", size: 20)
+        
         return lab
     }()
     
@@ -92,7 +93,7 @@ class AddCardView: UIView {
             lab.left.equalTo(self.snp.left).offset(40)
             lab.height.equalTo(self.snp.height).multipliedBy(0.06)
             lab.width.equalTo(self.snp.width).multipliedBy(0.2)
-
+            
         }
     }
     

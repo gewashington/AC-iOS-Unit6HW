@@ -10,6 +10,13 @@ import UIKit
 import SnapKit
 import Firebase
 
+/*To load and save correct answer:
+ - When card is created, correctGuess is created
+ - Correct answer must load when VC loads the first card
+ - Load correct amount of guess for next question
+ - When user clicks that they got it right, correct answer += 1, correctAnswers is set to the correctAnswers saved to the next card which is being loaded
+ */
+
 class QuizWithCardsViewController: UIViewController {
     
     var ref: DatabaseReference!
@@ -19,6 +26,7 @@ class QuizWithCardsViewController: UIViewController {
             print("It set!")
             quizView.questionTextView.text = cards.first?.question
             quizView.answerTextView.text = cards.first?.answer
+            //load correct guess here
         }
     }
     
@@ -36,7 +44,7 @@ class QuizWithCardsViewController: UIViewController {
         setViews()
         currentUser = Auth.auth().currentUser
         loadCards()
-        
+        loadCorrectGuessForCurrentQuestion()
     }
     
     init(deckTitle: String) {
@@ -78,6 +86,10 @@ class QuizWithCardsViewController: UIViewController {
         }
     }
     
+    func loadCorrectGuessForCurrentQuestion() {
+        
+    }
+    
     @objc private func showAnswer() {
         quizView.answerTextView.isHidden =  false
         quizButtons.rightButton.isHidden = false
@@ -116,7 +128,7 @@ class QuizWithCardsViewController: UIViewController {
         }
         quizView.questionTextView.text = cards[currentCard].question
         quizView.answerTextView.text = cards[currentCard].answer
-        
+        loadCorrectGuessForCurrentQuestion()
     }
     /*
      // MARK: - Navigation

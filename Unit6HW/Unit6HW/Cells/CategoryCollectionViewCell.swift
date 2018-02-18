@@ -26,6 +26,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         let lab = UILabel()
         lab.text = "Category"
         lab.textColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+        lab.textAlignment = .center
         return lab
     }()
     

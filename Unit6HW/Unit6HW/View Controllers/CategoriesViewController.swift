@@ -150,7 +150,7 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
         cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true
         cell.layer.borderWidth = 0.5
-        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.layer.borderColor = UIColor.lightGray.cgColor
         return cell
     }
     
