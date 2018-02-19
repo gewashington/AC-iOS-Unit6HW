@@ -24,17 +24,31 @@ class QuizWithCardsViewController: UIViewController {
     var cards = [Cards]() {
         didSet{
             print("It set!")
-            quizView.questionTextView.text = cards.first?.question
-            quizView.answerTextView.text = cards.first?.answer
-            //load correct guess here
+//            quizView.questionTextView.text = cards.first?.question
+//            quizView.answerTextView.text = cards.first?.answer
+//            correctAnswers = (cards.first?.timesCorrect)!
+            quizView.questionTextView.text = cards[currentCard].question
+            quizView.answerTextView.text = cards[currentCard].answer
+            correctAnswers = cards[currentCard].timesCorrect
+        
         }
     }
     
     var currentUser: User!
     var currentDeckTitle: String!
     var currentCard = 0
-    var correctAnswers = 0
+    var correctAnswers = Int()
+//    {
+//        willSet {
+//            print("It didSet")
+//        }
+//    }
     
+    var question = String() {
+        didSet {
+            question = cards[currentCard].question
+        }
+    }
     
     let quizView = QuizWithCardsView()
     let quizButtons = QuizButtonView()
@@ -44,9 +58,11 @@ class QuizWithCardsViewController: UIViewController {
         setViews()
         currentUser = Auth.auth().currentUser
         loadCards()
-        loadCorrectGuessForCurrentQuestion()
+
     }
     
+    
+
     init(deckTitle: String) {
         super.init(nibName: nil, bundle: nil)
         self.currentDeckTitle = deckTitle
@@ -86,9 +102,12 @@ class QuizWithCardsViewController: UIViewController {
         }
     }
     
-    func loadCorrectGuessForCurrentQuestion() {
-        
-    }
+//    func loadCorrectGuessForCurrentQuestion() {
+//        DatabaseService.shared.getAnsweredCorrectlyAmount(from: currentUser, in: currentDeckTitle, referring: question) { (onlineGuess) in
+//            let safeGuess = onlineGuess
+//            self.correctAnswers = safeGuess
+//        }
+//    }
     
     @objc private func showAnswer() {
         quizView.answerTextView.isHidden =  false
@@ -98,16 +117,18 @@ class QuizWithCardsViewController: UIViewController {
     }
     
     @objc private func correctAnswer() {
+//        loadCorrectGuessForCurrentQuestion()
         correctAnswers += 1
+        self.ref = Database.database().reference()
+        let guessCounter = self.ref.child("users/\(currentUser.uid)/cards/\(currentDeckTitle!)/\(cards[currentCard].cardRef)")
+        guessCounter.updateChildValues(["timesCorrect": correctAnswers])
+        nextQuestion()
         quizView.answerTextView.isHidden = true
         quizButtons.rightButton.isHidden = true
         quizButtons.wrongButton.isHidden = true
         quizButtons.showAnswerButton.isHidden = false
-        self.ref = Database.database().reference()
-        let newCorrectGuesses = CorrectGuess(ref: ref, correctGuesses: correctAnswers)
-        let newGuessAmount = self.ref.child("users/\(currentUser.uid)/timesCorrect").child(currentDeckTitle).child(cards[currentCard].question)
-        newGuessAmount.setValue(newCorrectGuesses.toAnyObject())
-        nextQuestion()
+//        guessCounter.child("correctGuesses").setValue(correctAnswers)
+        
     }
     
     @objc private func wrongAnswer() {
@@ -125,10 +146,11 @@ class QuizWithCardsViewController: UIViewController {
         }
         else {
             currentCard += 1
+            
         }
         quizView.questionTextView.text = cards[currentCard].question
         quizView.answerTextView.text = cards[currentCard].answer
-        loadCorrectGuessForCurrentQuestion()
+        correctAnswers = cards[currentCard].timesCorrect
     }
     /*
      // MARK: - Navigation

@@ -21,6 +21,23 @@ class AddCardView: UIView {
         return butt
     }()
     
+    lazy var selectDeckButtonLabel: UILabel = {
+        let lab = UILabel()
+        lab.text = "Choose A Deck"
+        lab.textAlignment = .center
+        lab.textColor = .black
+        lab.adjustsFontSizeToFitWidth = true
+        return lab
+    }()
+    
+    lazy var disclosureIndicatorImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "disclosureIndicator")
+        iv.contentMode = UIViewContentMode.scaleToFill
+        return iv
+    }()
+    
+    
     lazy var questionLabel: UILabel = {
         let lab = UILabel()
         lab.text = "Front"
@@ -69,9 +86,11 @@ class AddCardView: UIView {
     }
     
     private func setupViews() {
-        let views = [selectDeckButton, questionLabel, questionTextField, answerLabel, answerTextField] as [UIView]
+        let views = [selectDeckButton, selectDeckButtonLabel, disclosureIndicatorImageView, questionLabel, questionTextField, answerLabel, answerTextField] as [UIView]
         views.forEach { addSubview($0)}
         setUpCategoryButton()
+        setUpCategoryButtonLabel()
+        setUpCatgoryButtonImage()
         setUpQuestionLab()
         setUpQuestionTF()
         setUpAnswerLab()
@@ -84,6 +103,27 @@ class AddCardView: UIView {
             butt.top.equalTo(self.snp.top).offset(70)
             butt.width.equalTo(self.snp.width).multipliedBy(0.8)
             butt.height.equalTo(self.snp.height).multipliedBy(0.1)
+        }
+    }
+    
+    private func setUpCategoryButtonLabel() {
+        selectDeckButtonLabel.snp.makeConstraints { (lab) in
+            lab.centerX.equalTo(selectDeckButton.snp.centerX)
+            lab.left.equalTo(selectDeckButton.snp.left).offset(5)
+            lab.height.equalTo(selectDeckButton.snp.height).multipliedBy(0.8)
+            lab.width.equalTo(selectDeckButton.snp.width).multipliedBy(0.6)
+            lab.top.equalTo(selectDeckButton.snp.top).offset(5)
+        }
+    }
+    
+    private func setUpCatgoryButtonImage() {
+        disclosureIndicatorImageView.snp.makeConstraints { (iv) in
+            iv.centerX.equalTo(selectDeckButton.snp.centerX)
+           iv.right.equalTo(selectDeckButton.snp.right).offset(-5)
+//            iv.height.equalTo(selectDeckButton.snp.height).multipliedBy(0.8)
+//            iv.width.equalTo(selectDeckButton.snp.width).multipliedBy(0.6)
+            iv.size.equalTo
+            iv.top.equalTo(selectDeckButton.snp.top).offset(5)
         }
     }
     

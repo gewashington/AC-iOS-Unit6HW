@@ -47,6 +47,18 @@ class DatabaseService {
         }
     }
     
+    public func getAnsweredCorrectlyAmount(from user: User, in deck: String, referring question: String, completion: @escaping(Int) -> Void) {
+        deckRef.child("\(user.uid)/timesCorrect/\(deck)/\(question)").observe(.value) { (snapshot) in
+            var counter = Int()
+            for child in snapshot.children {
+                let counterModel = CorrectGuess(snapShot: child as! DataSnapshot)
+                counter = counterModel.correctGuesses
+            }
+            completion(counter)
+        }
+        
+    }
+    
 
     
 

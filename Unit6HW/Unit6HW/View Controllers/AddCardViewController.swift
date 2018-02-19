@@ -76,12 +76,21 @@ class AddCardViewController: UIViewController, ChosenDeck {
         guard let question = addCardView.questionTextField.text, !question.isEmpty else { print("Blank question field"); return }
         guard let answer = addCardView.answerTextField.text, !answer.isEmpty else { print("Answer field is blank"); return }
         self.ref = Database.database().reference()
-        let newFlashCard = Cards(ref: ref, question: question, answer: answer)
+        var cardRef = ""
+//        let newFlashCard = Cards(ref: ref, question: question, answer: answer)
+        let newFlashCard = Cards(ref: ref, question: question, answer: answer, timesCorrect: 0, cardRef: cardRef)
         if let currentUser = Auth.auth().currentUser, currentDeckToModify != nil {
             let newCard = self.ref.child("users/\(currentUser.uid)/cards").child(currentDeckToModify).childByAutoId()
+            cardRef = newCard.key
             newCard.setValue(newFlashCard.toAnyObject())
-            print(newCard)
+            newCard.updateChildValues(["cardRef" : cardRef])
+     
         }
+//        let newCorrectGuess = CorrectGuess(ref: ref, correctGuesses: 0)
+//        if let currentUser = Auth.auth().currentUser, newFlashCard != nil {
+//            let newTimesCorrect = self.ref.child("users/\(currentUser.uid)/timesCorrect").child(currentDeckToModify).child(newFlashCard.question)
+//            newTimesCorrect.setValue(newCorrectGuess.toAnyObject())
+//        }
         addCardView.questionTextField.text = ""
         addCardView.answerTextField.text = ""
     
