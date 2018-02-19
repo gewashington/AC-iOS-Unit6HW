@@ -66,7 +66,7 @@ class CategoryView: UIView {
         butt.setImage(image, for: .normal)
         butt.tintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
         butt.layer.borderColor = UIColor.lightGray.cgColor
-        butt.layer.borderWidth = 0.3
+        butt.layer.borderWidth = 0.5
         return butt
     }()
     
@@ -76,7 +76,7 @@ class CategoryView: UIView {
         butt.setImage(image, for: .normal)
         butt.tintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
         butt.layer.borderColor = UIColor.lightGray.cgColor
-        butt.layer.borderWidth = 0.3
+        butt.layer.borderWidth = 0.5
 
         return butt
     }()
@@ -87,7 +87,7 @@ class CategoryView: UIView {
         butt.setImage(image, for: .normal)
         butt.tintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
         butt.layer.borderColor = UIColor.lightGray.cgColor
-        butt.layer.borderWidth = 0.3
+        butt.layer.borderWidth = 0.5
         return butt
     }()
     

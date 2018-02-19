@@ -47,8 +47,9 @@ class AddCardViewController: UIViewController, ChosenDeck {
         super.viewDidLoad()
         setUpAddCardView()
         self.navigationItem.rightBarButtonItem = addButton
-        addCardView.selectDeckButton.addTarget(self, action: #selector(viewDeckTitles), for: .touchUpInside)
         self.navigationItem.title = "Add Card"
+        addCardView.selectDeckButton.addTarget(self, action: #selector(viewDeckTitles), for: .touchUpInside)
+       
         addCardView.answerTextField.delegate = self
     }
     

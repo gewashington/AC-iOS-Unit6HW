@@ -28,7 +28,6 @@ class CategoriesViewController: UIViewController {
             categoryView.welcomeLabel.text = "Hi, \(String(describing: Auth.auth().currentUser!.displayName!))! Here are your decks!"
             categoryView.statisticTextView.text = """
             You have \(decks.count.description) decks.
-            You have guessed 50% of your cards correctly.
             """
             
         }

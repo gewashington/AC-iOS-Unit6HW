@@ -25,6 +25,7 @@ class AddCardView: UIView {
         let lab = UILabel()
         lab.text = "Choose A Deck"
         lab.textAlignment = .center
+        lab.font = UIFont(name: "GillSans-Light", size: 20)
         lab.textColor = .black
         lab.adjustsFontSizeToFitWidth = true
         return lab
