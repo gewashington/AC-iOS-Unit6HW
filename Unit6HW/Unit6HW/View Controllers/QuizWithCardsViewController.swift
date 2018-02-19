@@ -89,6 +89,7 @@ class QuizWithCardsViewController: UIViewController {
         quizView.answerTextView.isHidden = true
         quizButtons.rightButton.isHidden = true
         quizButtons.wrongButton.isHidden = true
+        quizView.timesCorrectLabel.isHidden = true
         
         quizButtons.showAnswerButton.addTarget(self, action: #selector(showAnswer), for: .touchUpInside)
         quizButtons.rightButton.addTarget(self, action: #selector(correctAnswer), for: .touchUpInside)
@@ -114,6 +115,8 @@ class QuizWithCardsViewController: UIViewController {
         quizButtons.rightButton.isHidden = false
         quizButtons.wrongButton.isHidden = false
         quizButtons.showAnswerButton.isHidden = true
+        quizView.timesCorrectLabel.isHidden = false
+        quizView.timesCorrectLabel.text = "Times Answered Correctly: \(cards[currentCard].timesCorrect)"
     }
     
     @objc private func correctAnswer() {
@@ -127,6 +130,7 @@ class QuizWithCardsViewController: UIViewController {
         quizButtons.rightButton.isHidden = true
         quizButtons.wrongButton.isHidden = true
         quizButtons.showAnswerButton.isHidden = false
+        quizView.timesCorrectLabel.isHidden = true
 //        guessCounter.child("correctGuesses").setValue(correctAnswers)
         
     }
@@ -135,7 +139,9 @@ class QuizWithCardsViewController: UIViewController {
         quizView.answerTextView.isHidden = true
         quizButtons.rightButton.isHidden = true
         quizButtons.wrongButton.isHidden = true
+        quizView.timesCorrectLabel.isHidden = true
         quizButtons.showAnswerButton.isHidden = false
+        
         nextQuestion()
         
     }

@@ -108,22 +108,25 @@ class AddCardView: UIView {
     
     private func setUpCategoryButtonLabel() {
         selectDeckButtonLabel.snp.makeConstraints { (lab) in
-            lab.centerX.equalTo(selectDeckButton.snp.centerX)
+//            lab.centerX.equalTo(selectDeckButton.snp.centerX)
+            lab.center.equalTo(selectDeckButton.snp.center)
             lab.left.equalTo(selectDeckButton.snp.left).offset(5)
             lab.height.equalTo(selectDeckButton.snp.height).multipliedBy(0.8)
             lab.width.equalTo(selectDeckButton.snp.width).multipliedBy(0.6)
-            lab.top.equalTo(selectDeckButton.snp.top).offset(5)
+//            lab.top.equalTo(selectDeckButton.snp.top).offset(5)
         }
     }
     
     private func setUpCatgoryButtonImage() {
         disclosureIndicatorImageView.snp.makeConstraints { (iv) in
-            iv.centerX.equalTo(selectDeckButton.snp.centerX)
+//            iv.centerX.equalTo(selectDeckButton.snp.centerX)
            iv.right.equalTo(selectDeckButton.snp.right).offset(-5)
+            iv.center.equalTo(selectDeckButton.snp.center)
 //            iv.height.equalTo(selectDeckButton.snp.height).multipliedBy(0.8)
 //            iv.width.equalTo(selectDeckButton.snp.width).multipliedBy(0.6)
-            iv.size.equalTo
-            iv.top.equalTo(selectDeckButton.snp.top).offset(5)
+            iv.height.equalTo(selectDeckButton.snp.height).multipliedBy(0.3)
+            iv.width.equalTo(selectDeckButton.snp.width).multipliedBy(0.1)
+//            iv.top.equalTo(selectDeckButton.snp.top).offset(5)
         }
     }
     

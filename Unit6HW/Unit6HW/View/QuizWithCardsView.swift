@@ -18,6 +18,7 @@ class QuizWithCardsView: UIView {
         tv.backgroundColor = .clear
         tv.font = UIFont(name: "Gill Sans", size: 20)
         tv.textAlignment = .center
+        tv.adjustsFontForContentSizeCategory = true
         return tv
     }()
     
@@ -29,7 +30,18 @@ class QuizWithCardsView: UIView {
         tv.backgroundColor = .clear
         tv.font = UIFont(name: "Gill Sans", size: 20)
         tv.textAlignment = .center
+        tv.adjustsFontForContentSizeCategory = true
         return tv
+    }()
+    
+    lazy var timesCorrectLabel: UILabel = {
+        let lab = UILabel()
+        lab.backgroundColor = .clear
+        lab.font = UIFont(name: "Gill Sans", size: 15)
+        lab.textAlignment = .center
+        lab.textColor = .white
+        
+        return lab
     }()
     
         override init(frame: CGRect) {
@@ -48,10 +60,11 @@ class QuizWithCardsView: UIView {
         }
         
         private func setupViews() {
-            let views = [questionTextView, answerTextView] as [UIView]
+            let views = [questionTextView, answerTextView, timesCorrectLabel] as [UIView]
             views.forEach { addSubview($0)}
             setUpQuestionTV()
             setUpAnswerTV()
+            setUpGuessCorrectLab()
         }
     
     private func setUpQuestionTV() {
@@ -68,7 +81,16 @@ class QuizWithCardsView: UIView {
             tv.centerX.equalTo(self.snp.centerX)
             tv.top.equalTo(questionTextView.snp.bottom).offset(100)
             tv.width.equalTo(self.snp.width).multipliedBy(0.9)
-            tv.height.equalTo(self.snp.height).multipliedBy(0.3)
+            tv.height.equalTo(self.snp.height).multipliedBy(0.15)
+        }
+    }
+    
+    private func setUpGuessCorrectLab() {
+        timesCorrectLabel.snp.makeConstraints { (lab) in
+            lab.centerX.equalTo(self.snp.centerX)
+            lab.top.equalTo(answerTextView.snp.bottom).offset(5)
+            lab.width.equalTo(self.snp.width).multipliedBy(0.9)
+            lab.height.equalTo(self.snp.height).multipliedBy(0.1)
         }
     }
 

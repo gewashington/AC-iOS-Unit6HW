@@ -56,12 +56,12 @@ class AddCardViewController: UIViewController, ChosenDeck {
     }
 
     private func setUpButtonTitle() {
-        let listOfDecksButton = addCardView.selectDeckButton
+        let listOfDecksButton = addCardView.selectDeckButtonLabel
         if currentDeckToModify == nil {
-            listOfDecksButton.setTitle("Choose A Deck", for: .normal)
+            listOfDecksButton.text = "Choose A Deck"
         }
         else {
-            listOfDecksButton.setTitle(currentDeckToModify, for: .normal)
+            listOfDecksButton.text = currentDeckToModify
         }
     }
  
