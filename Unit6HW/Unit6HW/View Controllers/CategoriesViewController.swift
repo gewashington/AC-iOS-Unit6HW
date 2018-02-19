@@ -158,6 +158,7 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
         let deck = decks[indexPath.row]
         let quizVC = QuizWithCardsViewController(deckTitle: deck.name)
         self.navigationController?.pushViewController(quizVC, animated: true)
+        
     }
     
     

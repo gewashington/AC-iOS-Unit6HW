@@ -49,6 +49,7 @@ class AddCardViewController: UIViewController, ChosenDeck {
         self.navigationItem.rightBarButtonItem = addButton
         addCardView.selectDeckButton.addTarget(self, action: #selector(viewDeckTitles), for: .touchUpInside)
         self.navigationItem.title = "Add Card"
+        addCardView.answerTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,6 +102,8 @@ class AddCardViewController: UIViewController, ChosenDeck {
         listVC.delegate = self
         self.navigationController?.pushViewController(listVC, animated: true)
     }
+    
+   
     /*
     // MARK: - Navigation
 
@@ -111,4 +114,11 @@ class AddCardViewController: UIViewController, ChosenDeck {
     }
     */
 
+}
+
+extension AddCardViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addCardToDeck()
+        return false
+    }
 }

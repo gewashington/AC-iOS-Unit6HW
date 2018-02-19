@@ -70,7 +70,6 @@ class ListOfDecksTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let deck = decks[indexPath.row]
-    
         currentDeckName = deck.name
         self.navigationController?.popViewController(animated: true)
        
