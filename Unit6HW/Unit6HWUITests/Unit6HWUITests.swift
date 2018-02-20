@@ -28,9 +28,55 @@ class Unit6HWUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    func testAddDeck() {
+        
+        let app = XCUIApplication()
+        app.buttons["createNewDeck"].tap()
+        app.alerts["Create A New Deck"].collectionViews.textFields["Enter deck name"].typeText("A New Deck")
+        app.typeText("\r")
+        
     }
+    
+
+    func testSignIn() {
+
+        let app = XCUIApplication()
+        app.otherElements.containing(.navigationBar, identifier:"Unit6HW.CategoriesView").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 2).tap()
+        app.buttons["Log In"].tap()
+
+        let emailTextField = app.textFields["Email"]
+        emailTextField.tap()
+        emailTextField.typeText("test@test.com")
+
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("testtest")
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
+        app.buttons["Sign In"].tap()
+
+    }
+    
+    
+//    func testLogIn() {
+//
+//        let app = XCUIApplication()
+//        app.buttons["Log In"].tap()
+//
+//        let emailTextField = app.textFields["Email"]
+//        emailTextField.tap()
+//        emailTextField.typeText("test@test.com")
+//
+//        let passwordSecureTextField = app.secureTextFields["Password"]
+//        passwordSecureTextField.tap()
+//        passwordSecureTextField.typeText("testtest\r")
+//
+//    }
+    
+ 
+    
+
+
+    
     
 }
