@@ -32,13 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = LogInOrCreateAccountViewController()
             let navCon = UINavigationController(rootViewController: vc)
             window?.rootViewController = navCon
+            return true
         }
-            
-        else {
             let vc = CategoriesViewController()
             let navCon = UINavigationController(rootViewController: vc)
             window?.rootViewController = navCon
-        }
         return true
     }
     

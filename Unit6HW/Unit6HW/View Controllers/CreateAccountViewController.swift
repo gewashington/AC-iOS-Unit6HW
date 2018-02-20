@@ -58,8 +58,8 @@ extension CreateAccountViewController: FirebaseAPIDelegate{
         print("Created Account")
         let alertController = UIAlertController(title: "Account Created", message: "Thank you for registering. Enjoy your learning!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            let categoryVC = CategoriesViewController()
-            self.present(categoryVC, animated: true, completion: nil)
+            let logInVC = UINavigationController(rootViewController: CategoriesViewController() )
+            self.present(logInVC, animated: true, completion: nil)
         }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)

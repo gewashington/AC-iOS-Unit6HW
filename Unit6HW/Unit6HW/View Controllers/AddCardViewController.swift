@@ -81,6 +81,13 @@ class AddCardViewController: UIViewController, ChosenDeck {
             newCard.setValue(newFlashCard.toAnyObject())
             newCard.updateChildValues(["cardRef" : cardRef])
      
+            //Alert for adding card
+            let alertVC = UIAlertController(title: "Card Created", message: "The card has been added to the deck.", preferredStyle: .alert)
+            alertVC.view.layoutIfNeeded()
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertVC.addAction(okAction)
+            present(alertVC, animated: true, completion: nil)
+            
         }
 
         addCardView.questionTextField.text = ""

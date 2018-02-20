@@ -106,11 +106,11 @@ class CategoriesViewController: UIViewController {
         if !decks.isEmpty {
             print(decks)
             let addCardVC = AddCardViewController(decks: decks)
-            self.navigationController?.pushViewController(addCardVC, animated: true)
+            self.navigationController!.pushViewController(addCardVC, animated: true)
         }
         else {
             showAlert(title: "No Decks", message: "You need to create a deck to create cards. Please do that first!")
-        }
+        } 
     }
     
 }
