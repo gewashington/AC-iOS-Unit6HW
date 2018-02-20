@@ -29,6 +29,7 @@ class CreateAccountViewController: UIViewController {
         firebaseAuth.delegate = self
         createV.alreadyHaveAccountButton.addTarget(self, action: #selector(presentLoginVC), for: .touchUpInside)
         createV.createAccountButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+        createV.passwordTextField.delegate = self
     }
     
     private func setUpCreateV() {
@@ -40,7 +41,6 @@ class CreateAccountViewController: UIViewController {
     
     @objc private func presentLoginVC() {
         let loginVC = LogInViewController()
-        //        present(loginVC, animated: true, completion: nil)
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
     
@@ -50,15 +50,6 @@ class CreateAccountViewController: UIViewController {
         guard let password = createV.passwordTextField.text, !password.isEmpty else { print("Password is nil"); return }
         firebaseAuth.createUser(username: username, email: email, password: password)
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
@@ -85,4 +76,12 @@ extension CreateAccountViewController: FirebaseAPIDelegate{
         present(alertController, animated: true, completion: nil)
     }
     
+}
+
+extension CreateAccountViewController: UITextFieldDelegate {
+    //Turn into global function?
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        signUp()
+        return false
+    }
 }

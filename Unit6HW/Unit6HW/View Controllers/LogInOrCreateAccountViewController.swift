@@ -22,6 +22,7 @@ class LogInOrCreateAccountViewController: UIViewController {
         //For view
         view.addSubview(vcvView)
         view.backgroundColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
+        
         //turn into global function?
         let navBar = self.navigationController?.navigationBar
         navBar?.barTintColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
@@ -44,18 +45,11 @@ class LogInOrCreateAccountViewController: UIViewController {
     
     @objc private func switchToLoginVC() {
         let loginVC = LogInViewController()
-        
-//        let navLoginVC = UINavigationController(rootViewController: loginVC)
-//        present(loginVC, animated: true, completion: nil)
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
     
     @objc private func switchToCreateVC() {
         let createVC = CreateAccountViewController()
-//        let navCreateVC = UINavigationController(rootViewController: createVC)
         self.navigationController?.pushViewController(createVC, animated: true)
     }
-    
-
-
 }

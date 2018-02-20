@@ -20,8 +20,6 @@ class CategoryView: UIView {
         lab.adjustsFontSizeToFitWidth = true
         lab.numberOfLines = 0
         lab.textColor = UIColor(red: 51/255, green: 156/255, blue: 255/255, alpha: 1.0)
-//        lab.textColor = .black
-        //        lab.backgroundColor = .black
         lab.textAlignment = .center
         lab.font = UIFont(name: "GillSans-Light", size: 30)
         return lab
@@ -159,7 +157,6 @@ class CategoryView: UIView {
     private func setUpCreateButton() {
         createDeckButton.snp.makeConstraints { (butt) in
             butt.bottom.equalTo(self.snp.bottom)
-//            butt.width.equalTo(self.snp.width).multipliedBy(0.33)
             butt.height.equalTo(self.snp.height).multipliedBy(0.1)
             butt.right.equalTo(addCardButton.snp.left)
             butt.left.equalTo(self.snp.left)
@@ -169,7 +166,6 @@ class CategoryView: UIView {
     private func setUpLogoutButton() {
         logoutButton.snp.makeConstraints { (butt) in
             butt.bottom.equalTo(self.snp.bottom)
-//            butt.width.equalTo(self.snp.width).multipliedBy(0.33)
             butt.height.equalTo(self.snp.height).multipliedBy(0.1)
             butt.left.equalTo(addCardButton.snp.right)
             butt.right.equalTo(self.snp.right)

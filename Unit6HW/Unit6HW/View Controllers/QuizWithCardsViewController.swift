@@ -23,13 +23,7 @@ class QuizWithCardsViewController: UIViewController {
     
     var cards = [Cards]() {
         didSet{
-            print("It set!")
-//            quizView.questionTextView.text = cards.first?.question
-//            quizView.answerTextView.text = cards.first?.answer
-//            correctAnswers = (cards.first?.timesCorrect)!
-            quizView.questionTextView.text = cards[currentCard].question
-            quizView.answerTextView.text = cards[currentCard].answer
-            correctAnswers = cards[currentCard].timesCorrect
+            setCardInfo()
         
         }
     }
@@ -38,12 +32,7 @@ class QuizWithCardsViewController: UIViewController {
     var currentDeckTitle: String!
     var currentCard = 0
     var correctAnswers = Int()
-//    {
-//        willSet {
-//            print("It didSet")
-//        }
-//    }
-    
+
     var question = String() {
         didSet {
             question = cards[currentCard].question
@@ -60,7 +49,6 @@ class QuizWithCardsViewController: UIViewController {
         loadCards()
 
     }
-    
     
 
     init(deckTitle: String) {
@@ -86,62 +74,54 @@ class QuizWithCardsViewController: UIViewController {
             butt.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             butt.width.equalTo(view.safeAreaLayoutGuide.snp.width)
         }
-        quizView.answerTextView.isHidden = true
-        quizButtons.rightButton.isHidden = true
-        quizButtons.wrongButton.isHidden = true
-        quizView.timesCorrectLabel.isHidden = true
-        
+        hideViews()
         quizButtons.showAnswerButton.addTarget(self, action: #selector(showAnswer), for: .touchUpInside)
         quizButtons.rightButton.addTarget(self, action: #selector(correctAnswer), for: .touchUpInside)
         quizButtons.wrongButton.addTarget(self, action: #selector(wrongAnswer), for: .touchUpInside)
     }
     
-    func loadCards() {
+    private func loadCards() {
         DatabaseService.shared.getCards(from: currentUser, from: currentDeckTitle) { (onlineCards) in
             let safeCards = onlineCards
             self.cards = safeCards
         }
     }
     
-//    func loadCorrectGuessForCurrentQuestion() {
-//        DatabaseService.shared.getAnsweredCorrectlyAmount(from: currentUser, in: currentDeckTitle, referring: question) { (onlineGuess) in
-//            let safeGuess = onlineGuess
-//            self.correctAnswers = safeGuess
-//        }
-//    }
+    private func setCardInfo() {
+        quizView.questionTextView.text = cards[currentCard].question
+        quizView.answerTextView.text = cards[currentCard].answer
+        correctAnswers = cards[currentCard].timesCorrect
+    }
+    
+    
+    private func hideViews() {
+        let viewsToHide = [quizView.answerTextView, quizButtons.rightButton, quizButtons.wrongButton, quizView.timesCorrectLabel] as [UIView]
+        viewsToHide.forEach { ($0).isHidden = true }
+    }
     
     @objc private func showAnswer() {
-        quizView.answerTextView.isHidden =  false
-        quizButtons.rightButton.isHidden = false
-        quizButtons.wrongButton.isHidden = false
+        let viewsToReveal = [quizView.answerTextView, quizButtons.rightButton, quizButtons.wrongButton, quizView.timesCorrectLabel] as [UIView]
+        viewsToReveal.forEach { ($0).isHidden = false }
         quizButtons.showAnswerButton.isHidden = true
-        quizView.timesCorrectLabel.isHidden = false
         quizView.timesCorrectLabel.text = "Times Answered Correctly: \(cards[currentCard].timesCorrect)"
     }
     
+    
     @objc private func correctAnswer() {
-//        loadCorrectGuessForCurrentQuestion()
         correctAnswers += 1
         self.ref = Database.database().reference()
         let guessCounter = self.ref.child("users/\(currentUser.uid)/cards/\(currentDeckTitle!)/\(cards[currentCard].cardRef)")
         guessCounter.updateChildValues(["timesCorrect": correctAnswers])
         nextQuestion()
-        quizView.answerTextView.isHidden = true
-        quizButtons.rightButton.isHidden = true
-        quizButtons.wrongButton.isHidden = true
+        hideViews()
         quizButtons.showAnswerButton.isHidden = false
-        quizView.timesCorrectLabel.isHidden = true
-//        guessCounter.child("correctGuesses").setValue(correctAnswers)
+
         
     }
     
     @objc private func wrongAnswer() {
-        quizView.answerTextView.isHidden = true
-        quizButtons.rightButton.isHidden = true
-        quizButtons.wrongButton.isHidden = true
-        quizView.timesCorrectLabel.isHidden = true
+        hideViews()
         quizButtons.showAnswerButton.isHidden = false
-        
         nextQuestion()
         
     }
@@ -154,9 +134,7 @@ class QuizWithCardsViewController: UIViewController {
             currentCard += 1
             
         }
-        quizView.questionTextView.text = cards[currentCard].question
-        quizView.answerTextView.text = cards[currentCard].answer
-        correctAnswers = cards[currentCard].timesCorrect
+        setCardInfo()
     }
     /*
      // MARK: - Navigation

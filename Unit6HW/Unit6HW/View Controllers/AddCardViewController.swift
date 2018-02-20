@@ -16,13 +16,12 @@ protocol ChosenDeck  {
 
 class AddCardViewController: UIViewController, ChosenDeck {
    
-    
-
     var ref: DatabaseReference!
+    
     var currentDeckToModify: String!
-//    var chosenDeck: String!
+
     let addCardView = AddCardView()
-//    let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCardToDeck))
+
     let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "savedCardPlus"), style: .plain, target: self, action: #selector(addCardToDeck))
     
     var deckHolder = [Decks]()
@@ -36,12 +35,9 @@ class AddCardViewController: UIViewController, ChosenDeck {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func didChooseDeck(deck: String) {
         currentDeckToModify = deck
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +45,6 @@ class AddCardViewController: UIViewController, ChosenDeck {
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.title = "Add Card"
         addCardView.selectDeckButton.addTarget(self, action: #selector(viewDeckTitles), for: .touchUpInside)
-       
         addCardView.answerTextField.delegate = self
     }
     
@@ -79,7 +74,6 @@ class AddCardViewController: UIViewController, ChosenDeck {
         guard let answer = addCardView.answerTextField.text, !answer.isEmpty else { print("Answer field is blank"); return }
         self.ref = Database.database().reference()
         var cardRef = ""
-//        let newFlashCard = Cards(ref: ref, question: question, answer: answer)
         let newFlashCard = Cards(ref: ref, question: question, answer: answer, timesCorrect: 0, cardRef: cardRef)
         if let currentUser = Auth.auth().currentUser, currentDeckToModify != nil {
             let newCard = self.ref.child("users/\(currentUser.uid)/cards").child(currentDeckToModify).childByAutoId()
@@ -88,11 +82,7 @@ class AddCardViewController: UIViewController, ChosenDeck {
             newCard.updateChildValues(["cardRef" : cardRef])
      
         }
-//        let newCorrectGuess = CorrectGuess(ref: ref, correctGuesses: 0)
-//        if let currentUser = Auth.auth().currentUser, newFlashCard != nil {
-//            let newTimesCorrect = self.ref.child("users/\(currentUser.uid)/timesCorrect").child(currentDeckToModify).child(newFlashCard.question)
-//            newTimesCorrect.setValue(newCorrectGuess.toAnyObject())
-//        }
+
         addCardView.questionTextField.text = ""
         addCardView.answerTextField.text = ""
     
@@ -104,16 +94,6 @@ class AddCardViewController: UIViewController, ChosenDeck {
         self.navigationController?.pushViewController(listVC, animated: true)
     }
     
-   
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

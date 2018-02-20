@@ -15,13 +15,16 @@ import Firebase
 
 class CategoriesViewController: UIViewController {
     
-
+    
     
     let categoryView = CategoryView()
+    
     private var firebaseAuth = FirebaseAuthorization()
     
     var currentUser: User!
+    
     var ref: DatabaseReference!
+    
     var decks = [Decks]() {
         didSet{
             categoryView.categoryCollectionView.reloadData()
@@ -29,10 +32,8 @@ class CategoriesViewController: UIViewController {
             categoryView.statisticTextView.text = """
             You have \(decks.count.description) decks.
             """
-            
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class CategoriesViewController: UIViewController {
         //        DatabaseService.shared.deckRef.observe(.value) { (snapshot) in
         //            print(snapshot)
         //        }
-
+        
         view.addSubview(categoryView)
         setUpCatView()
         let navBar = self.navigationController?.navigationBar
@@ -52,19 +53,11 @@ class CategoriesViewController: UIViewController {
         navBar?.isTranslucent = false
         navBar?.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navBar?.shadowImage = UIImage()
-//        categoryView.welcomeLabel.text = "Hi, \(String(describing: Auth.auth().currentUser!.displayName!))! Here are your decks!"
-//        categoryView.statisticTextView.text = """
-//        You have \(decks.count.description) decks.
-//        You have guessed 50% of your cards correctly.
-//        """
         categoryView.logoutButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         categoryView.createDeckButton.addTarget(self, action: #selector(createDeck), for: .touchUpInside)
         categoryView.addCardButton.addTarget(self, action: #selector(addCard), for: .touchUpInside)
-        //        categoryView.categoryCollectionView.delegate = self
         categoryView.categoryCollectionView.dataSource = self
         categoryView.categoryCollectionView.delegate = self
-    
-        
     }
     
     private func setUpCatView() {
@@ -80,7 +73,6 @@ class CategoriesViewController: UIViewController {
             print(self.decks)
             
         }
-        
     }
     
     @objc private func logOut() {
@@ -97,25 +89,29 @@ class CategoriesViewController: UIViewController {
             let newDeck = Decks(ref: self.ref, name: deckName)
             if let currentUser = Auth.auth().currentUser {
                 let newCat = self.ref.child("users/\(String(describing: currentUser.uid))/categories").childByAutoId()
-                newCat.setValue(newDeck.toAnyObject())
-            
-                
+                newCat.setValue(newDeck.toAnyObject())    
             }
         }
         createDeckAC.addTextField { (textfield) in
             textfield.placeholder = "Enter deck name"
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
         createDeckAC.addAction(okAction)
         createDeckAC.addAction(cancelAction)
         self.present(createDeckAC, animated: true, completion: nil)
+        
     }
     
     @objc private func addCard() {
-        let addCardVC = AddCardViewController(decks: decks)
-        self.navigationController?.pushViewController(addCardVC, animated: true)
-   }
+        if !decks.isEmpty {
+            print(decks)
+            let addCardVC = AddCardViewController(decks: decks)
+            self.navigationController?.pushViewController(addCardVC, animated: true)
+        }
+        else {
+            showAlert(title: "No Decks", message: "You need to create a deck to create cards. Please do that first!")
+        }
+    }
     
 }
 
@@ -137,6 +133,8 @@ extension CategoriesViewController: FirebaseAPIDelegate {
     }
 }
 
+
+//Set Up VC Collection View
 extension CategoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return decks.count
@@ -166,14 +164,8 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
                 self.showAlert(title: "Empty Deck", message: "Can't have a deck without cards! Please add a card or two to this deck.")
             }
         }
-            
-        
-
         
     }
-    
-    
-
     
 }
 
