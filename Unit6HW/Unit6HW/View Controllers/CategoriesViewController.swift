@@ -155,8 +155,20 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let deck = decks[indexPath.row]
-        let quizVC = QuizWithCardsViewController(deckTitle: deck.name)
-        self.navigationController?.pushViewController(quizVC, animated: true)
+        self.ref = Database.database().reference()
+        
+        self.ref.child("users/\(currentUser.uid)/cards").observeSingleEvent(of: (.value)) { (snapshot) in
+            if snapshot.hasChild(deck.name) {
+                let quizVC = QuizWithCardsViewController(deckTitle: deck.name)
+                self.navigationController?.pushViewController(quizVC, animated: true)
+            }
+            else {
+                self.showAlert(title: "Empty Deck", message: "Can't have a deck without cards! Please add a card or two to this deck.")
+            }
+        }
+            
+        
+
         
     }
     
