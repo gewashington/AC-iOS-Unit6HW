@@ -10,17 +10,7 @@ import UIKit
 import SnapKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
-    
-    
-    
-//    lazy var mainBackground: UIView = {
-//        let view = UIView()
-//        return view
-//    }()
-//    lazy var shadowLayer: UIView = {
-//        let view = UIView()
-//        return view
-//    }()
+
     
     lazy var categoryNameLabel: UILabel = {
         let lab = UILabel()
@@ -42,47 +32,25 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     private func commonInit() {
         backgroundColor = .white
+         self.layer.cornerRadius = 5
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 1.5
+        self.layer.shadowOpacity = 1
+        self.layer.masksToBounds = false
         setupViews()
     }
     
     private func setupViews() {
         addSubview(categoryNameLabel)
-//                addSubview(mainBackground)
-//                addSubview(shadowLayer)
         categoryNameLabel.snp.makeConstraints { (lab) in
             lab.width.equalTo(self.snp.width).multipliedBy(0.8)
             lab.height.equalTo(self.snp.height).multipliedBy(0.7)
             lab.centerX.equalTo(self.snp.centerX)
             lab.centerY.equalTo(self.snp.centerY)
         }
-//        customizeCell()
         
     }
     
-//    private func customizeCell() {
-//        //adds shadow to cells
-//        mainBackground.snp.makeConstraints { (view) in
-//            view.size.equalTo(self.snp.size)
-//        }
-//        shadowLayer.snp.makeConstraints { (view) in
-//            view.size.equalTo(self.snp.size)
-//        }
-//
-//        mainBackground.layer.backgroundColor = UIColor.white.cgColor
-//        mainBackground.layer.cornerRadius = 8
-//        mainBackground.layer.masksToBounds = true
-//        shadowLayer.layer.backgroundColor = UIColor.white.cgColor
-//        shadowLayer.layer.masksToBounds = false
-//        shadowLayer.layer.shadowOffset = CGSize(width: 0, height: 0)
-//        shadowLayer.layer.shadowColor = UIColor.black.cgColor
-//        shadowLayer.layer.shadowOpacity = 0.23
-//        shadowLayer.layer.shadowRadius = 4
-//        shadowLayer.layer.shadowPath = UIBezierPath(rect: shadowLayer.bounds).cgPath
-//        shadowLayer.layer.shouldRasterize = true
-//    }
-    
-    
-    public func configureCell() {
-        
-    }
+
 }

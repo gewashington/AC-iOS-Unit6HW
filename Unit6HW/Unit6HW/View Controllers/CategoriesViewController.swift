@@ -144,10 +144,10 @@ extension CategoriesViewController: UICollectionViewDataSource, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCell", for: indexPath) as! CategoryCollectionViewCell
         let deck = decks[indexPath.row]
         cell.categoryNameLabel.text = deck.name
-        cell.layer.cornerRadius = 5
-        cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 0.5
-        cell.layer.borderColor = UIColor.lightGray.cgColor
+//        cell.layer.cornerRadius = 5
+//        cell.layer.masksToBounds = true
+//        cell.layer.borderWidth = 0.5
+//        cell.layer.borderColor = UIColor.lightGray.cgColor
         return cell
     }
     
